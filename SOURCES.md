@@ -10,7 +10,7 @@ Inventory of the public data used in `sen-observatory`, with known issues and th
 | Resolution | 15 minutes |
 | Units | MW (average power over each interval) |
 | Timestamps | Portuguese local time; each row is the **start** of its 15-min interval |
-| Coverage checked | 2025-04-28 (96 rows, 00:00–23:45) |
+| Coverage checked | 2025-04-21 and 2025-04-28 (96 rows each, 00:00–23:45) |
 
 ### Series available
 
@@ -24,7 +24,7 @@ Inventory of the public data used in `sen-observatory`, with known issues and th
 
 - First 2 lines are metadata (units, access timestamp): skip them when reading.
 - Comma separator, dot as decimal mark.
-- Column names are in Portuguese with accents; renamed to English snake_case on load (`hydro`, `wind`, `solar`, `ccgt`, `cogeneration`, `imports`, `exports`, `pumping`, `battery_discharge`, `battery_charge`, `consumption`, …).
+- Column names are in Portuguese with accents; renamed to English snake_case on load (`hydro`, `wind`, `solar`, `natural_gas`, `imports`, `exports`, `pumping`, `battery_discharge`, `battery_charge`, `consumption`, …).
 - Imports and exports come in separate columns, both positive. Pumping and battery consumption are loads.
 
 ## 2. ENTSO-E Transparency Platform — [transparency.entsoe.eu](https://transparency.entsoe.eu)
@@ -40,7 +40,7 @@ Planned series: day-ahead load, wind and solar forecasts (PT); day-ahead prices;
 
 | Date found | Source | Issue | Handling |
 |---|---|---|---|
-| 2026-11-10 | REN Data Hub CSV | The cogeneration column duplicates the CCGT column on every row of 2025-04-28. Site charts show zero cogeneration that day, and the energy balance only closes (mean error ~9 MW) with gas counted once. | Cogeneration set to 0 for 2025-04-28. To check whether the duplication also happens on other days. |
+| 2026-11-10 | REN Data Hub CSV | The cogeneration column duplicates the CCGT column on every row, on both days checked (2025-04-21 and 2025-04-28). The energy balance only closes with gas counted once (mean residual ~8 MW on 04-21 and ~14 MW on 04-28 before the blackout, against ~770 MW and ~350 MW if counted twice). Site figures for 2025-04-21 show cogeneration at a 3 MW daily peak and 0 GWh daily energy (rounded), so the single value is in practice CCGT; any real cogeneration is below the balance residual. | The cogeneration column is dropped and gas is kept as a single `natural_gas` series, counted once. |
 
 ## Conventions
 
