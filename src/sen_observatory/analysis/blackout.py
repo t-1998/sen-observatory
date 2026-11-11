@@ -64,8 +64,6 @@ LABELS = {
     "synchronous_generation": "Synchronous generation (hydro + gas + biomass + other thermal)",
     "inverter_based_generation": "Inverter-based generation (wind + solar)",
 }
-# Not in the main table: zero or negligible at 11:15 on both days (checked in the figure caption).
-OMITTED_REN_COLUMNS = ("coal", "wave", "battery_discharge")
 
 # Fixed categorical slots (palette.md, light mode), assigned by entity in stacking order.
 SERIES_COLORS = {
@@ -351,7 +349,6 @@ def plot_operation(con: duckdb.DuckDBPyConnection, out_dir: Path) -> pd.DataFram
     ymin = min((-(d["pumping"] + (-d["net_interconnection"]).clip(lower=0))).min() for d in days.values())
     ymax, ymin = float(np.ceil(ymax * 1.08 / 1000) * 1000), float(np.floor(ymin * 1.08 / 1000) * 1000)
 
-    omitted_max = max(d[list(OMITTED_REN_COLUMNS)].max().max() for d in days.values())
     max_residual = con.execute(
         "SELECT max(abs(balance_residual_mw)) FROM ren_generation "
         "WHERE CAST(timezone('Europe/Lisbon', ts_utc) AS DATE) IN (?, ?)", [EVENT_DAY, REFERENCE_DAY]
@@ -377,7 +374,7 @@ def plot_operation(con: duckdb.DuckDBPyConnection, out_dir: Path) -> pd.DataFram
              "Percentages: share of consumption.", fontsize=9.5, color=INK_SECONDARY, va="top")
     fig.text(0.06, 0.034, "Source: REN Data Hub. Hydro includes turbine generation of pumped-storage plants.",
              fontsize=8.3, color=INK_MUTED, va="bottom")
-    fig.text(0.06, 0.010, f"Coal, wave and battery discharge are omitted (at most {omitted_max:.0f} MW in these two days). "
+    fig.text(0.06, 0.010, "Coal, wave and battery storage are omitted: absent or negligible in the Portuguese system in this period. "
              f"The balance holds within the REN residual (at most {max_residual:.0f} MW).",
              fontsize=8.3, color=INK_MUTED, va="bottom")
     fig.subplots_adjust(left=0.06, right=0.985, top=0.83, bottom=0.23, wspace=0.07)
