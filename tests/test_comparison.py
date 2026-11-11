@@ -302,9 +302,9 @@ def test_real_data_mapping_needs_no_review(real_con):
     assert comparison.check_mapping(real_con) == []
 
 
-def test_real_data_covers_the_four_days(real_con):
+def test_real_data_covers_every_loaded_ren_day(real_con):
     df = comparison.run_comparison(real_con)
     full = df[df["period"] == "full_day"]
     got = {str(d.date()): int(h) for d, h in
            full[full["component"] == "solar"][["local_day", "hours"]].itertuples(index=False)}
-    assert got == {"2025-03-30": 23, "2025-04-21": 24, "2025-04-28": 24, "2025-10-26": 25}
+    assert got == {"2025-03-30": 23, "2025-04-21": 24, "2025-04-28": 24, "2025-04-29": 24, "2025-10-26": 25}

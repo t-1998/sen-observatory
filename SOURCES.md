@@ -10,7 +10,7 @@ Inventory of the public data used in `sen-observatory`, with known issues and th
 | Resolution | 15 minutes |
 | Units | MW (average power over each interval) |
 | Timestamps | Portuguese local time; each row is the **start** of its 15-min interval |
-| Coverage checked | 2025-03-30 (92 rows), 2025-04-21 and 2025-04-28 (96 rows each, 00:00–23:45), 2025-10-26 (100 rows). The 30 March and 26 October files are the daylight-saving days |
+| Coverage checked | 2025-03-30 (92 rows), 2025-04-21, 2025-04-28 and 2025-04-29 (96 rows each, 00:00–23:45), 2025-10-26 (100 rows). The 30 March and 26 October files are the daylight-saving days |
 
 ### Series available
 
