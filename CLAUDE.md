@@ -17,7 +17,6 @@ Conventions for working on `sen-observatory`. Read `SOURCES.md` for the data inv
 
 ## Project layout
 - `src/sen_observatory/` — Python package (managed with `uv`).
-- `notebooks/` — exploratory notebooks.
 - `data/` — local raw and processed data (git-ignored).
 - `tests/` — pytest suite (`uv run pytest`).
 

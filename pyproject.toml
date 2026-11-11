@@ -1,7 +1,7 @@
 [project]
 name = "sen-observatory"
 version = "0.1.0"
-description = "Add your description here"
+description = "A personal observatory of public data on the Portuguese electricity system (SEN, Sistema Elétrico Nacional): REN and ENTSO-E data loaded into DuckDB, compared and analysed in Python."
 readme = "README.md"
 authors = [
     { name = "Tiago Felizardo", email = "67415202+t-1998@users.noreply.github.com" }
