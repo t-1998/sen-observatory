@@ -1,0 +1,22 @@
+[project]
+name = "sen-observatory"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Tiago Felizardo", email = "67415202+t-1998@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=2.0.0",
+    "pandas>=3.1.1",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+sen-observatory = "sen_observatory:main"
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
