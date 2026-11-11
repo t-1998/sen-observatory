@@ -19,6 +19,12 @@ Conventions for working on `sen-observatory`. Read `SOURCES.md` for the data inv
 - `src/sen_observatory/` — Python package (managed with `uv`).
 - `notebooks/` — exploratory notebooks.
 - `data/` — local raw and processed data (git-ignored).
+- `tests/` — pytest suite (`uv run pytest`).
+
+## Testing
+- Run the tests with `uv run pytest`.
+- **All tests must pass before any commit.** If a test fails, fix the cause (or the test, if it is wrong) before committing; never commit on red.
+- Tests use synthetic CSVs so they run without `data/`. Tests on real files are skipped automatically when the files are missing.
 
 ## Working with the user
 - The user is learning: for every file created, explain in 2–3 sentences what it is and why it exists.
